@@ -1,0 +1,26 @@
+li a {
+  font-family: Arial, Helvetica,Sans-Serif;
+  color: #000000;
+}
+
+a span {
+  background-color: #bdad48;
+}
+
+.region #block-search-form {
+  color: #ffffff;
+  background-color: #ff7c1f;
+}
+
+#page #main-wrapper {
+  background-color: #d2fad2;
+}
+
+.region #block-block-2 {
+  background-color: #ff7c1f;
+}
+
+#main-wrapper #main {
+  background-color: #cc8904;
+}
+
