@@ -1,0 +1,18 @@
+<?php
+
+function pet_menu(){
+  $items = array();
+  $items['my_pets'] = array(
+          'title' => 'My Favorite Pets',
+          'page callback' => 'display_pet',
+          'access callback' => TRUE,
+          'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+function display_pet(){
+  return "
+  <a href='https://arkencounter.com/'>Dino Info</a>
+  <img src='/sites/all/modules/pet/dinosaur.jpg' alt='dinosaur image'>";
+}
