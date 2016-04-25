@@ -1,0 +1,43 @@
+<?php
+
+function groceries_menu() {
+  $items = array();
+  $items['my_groceries'] = array(
+    'title' => 'My Groceries',
+    'page callback' => 'all_groceries',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+function grocery_list() {
+  $groceries_array = array(
+    'eggs' => array(
+      'price' => '$2.50 per dozen',
+      'quantity' => '2 dozen',
+    ),
+      'milk' => array(
+      'price' => '$3.99 per gallon',
+      'quantity' => '1 gallon',
+    ),
+      'bread' => array(
+      'price' => '$1.99 per loaf',
+      'quantity' => '2 loaves',
+    ),
+  );
+  return $groceries_array;
+}
+
+function all_groceries() {
+  $display = '';
+  $groceries_array = grocery_list();
+  foreach($groceries_array as $grocery_item => $grocery_item_value) {
+    $display = $display . "<h3>" . $grocery_item . "</h3><ul>";
+    foreach($grocery_item_value as $grocery_info_key => $grocery_info_value) {
+      $grocery_info_key;
+      $display = $display . "<li>" . $grocery_info_key . ": " . $grocery_info_value . "</li></ul>";
+    };
+  };
+  return $display;
+}

@@ -13,6 +13,6 @@ function pet_menu(){
 
 function display_pet(){
   return "
-  <a href='https://arkencounter.com/'>Dino Info</a>
+  <a href='http://www.livescience.com/3945-history-dinosaurs.html'>Dino Info</a>
   <img src='/sites/all/modules/pet/dinosaur.jpg' alt='dinosaur image'>";
 }
