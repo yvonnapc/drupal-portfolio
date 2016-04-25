@@ -12,7 +12,7 @@ function pet_menu(){
 }
 
 function display_pet(){
-  return "
-  <a href='http://www.livescience.com/3945-history-dinosaurs.html'>Dino Info</a>
-  <img src='/sites/all/modules/pet/dinosaur.jpg' alt='dinosaur image'>";
+  $image = drupal_get_path('module', 'pet') . '/dinosaur.jpg';
+  return "<a href='http://www.livescience.com/3945-history-dinosaurs.html' target='_blank'>Dino Info</a>
+    <image src=$image>";
 }

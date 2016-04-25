@@ -13,17 +13,17 @@ function groceries_menu() {
 
 function grocery_list() {
   $groceries_array = array(
-    'eggs' => array(
-      'price' => '$2.50 per dozen',
-      'quantity' => '2 dozen',
+    'Eggs' => array(
+      'Price' => '$2.50 per dozen',
+      'Quantity' => '2 dozen',
     ),
-      'milk' => array(
-      'price' => '$3.99 per gallon',
-      'quantity' => '1 gallon',
+    'Milk' => array(
+      'Price' => '$3.99 per gallon',
+      'Quantity' => '1 gallon',
     ),
-      'bread' => array(
-      'price' => '$1.99 per loaf',
-      'quantity' => '2 loaves',
+    'Bread' => array(
+      'Price' => '$1.99 per loaf',
+      'Quantity' => '2 loaves',
     ),
   );
   return $groceries_array;
@@ -35,7 +35,6 @@ function all_groceries() {
   foreach($groceries_array as $grocery_item => $grocery_item_value) {
     $display = $display . "<h3>" . $grocery_item . "</h3><ul>";
     foreach($grocery_item_value as $grocery_info_key => $grocery_info_value) {
-      $grocery_info_key;
       $display = $display . "<li>" . $grocery_info_key . ": " . $grocery_info_value . "</li>";
     };
     $display = $display . "</ul>";
