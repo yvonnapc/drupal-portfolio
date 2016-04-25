@@ -36,8 +36,9 @@ function all_groceries() {
     $display = $display . "<h3>" . $grocery_item . "</h3><ul>";
     foreach($grocery_item_value as $grocery_info_key => $grocery_info_value) {
       $grocery_info_key;
-      $display = $display . "<li>" . $grocery_info_key . ": " . $grocery_info_value . "</li></ul>";
+      $display = $display . "<li>" . $grocery_info_key . ": " . $grocery_info_value . "</li>";
     };
+    $display = $display . "</ul>";
   };
   return $display;
 }
