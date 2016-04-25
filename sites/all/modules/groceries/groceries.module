@@ -14,30 +14,45 @@ function groceries_menu() {
 function grocery_list() {
   $groceries_array = array(
     'Eggs' => array(
-      'Price' => '$2.50 per dozen',
-      'Quantity' => '2 dozen',
+      'price' => 2.50,
+      'quantity' => 2,
     ),
     'Milk' => array(
-      'Price' => '$3.99 per gallon',
-      'Quantity' => '1 gallon',
+      'price' => 3.99,
+      'quantity' => 1,
     ),
     'Bread' => array(
-      'Price' => '$1.99 per loaf',
-      'Quantity' => '2 loaves',
+      'price' => 1.99,
+      'quantity' => 2,
     ),
   );
   return $groceries_array;
 }
 
+function item_total($price, $quantity) {
+  return $price * $quantity;
+}
+
+function total_price() {
+  $groceries_array = grocery_list();
+  $total = 0;
+  foreach($groceries_array as $grocery_item => $grocery_item_value) {
+    $total = $total + $grocery_item_value['price'] * $grocery_item_value['quantity'];
+  };
+  return $total;
+}
+
 function all_groceries() {
   $display = '';
   $groceries_array = grocery_list();
+  $total = total_price();
   foreach($groceries_array as $grocery_item => $grocery_item_value) {
     $display = $display . "<h3>" . $grocery_item . "</h3><ul>";
     foreach($grocery_item_value as $grocery_info_key => $grocery_info_value) {
       $display = $display . "<li>" . $grocery_info_key . ": " . $grocery_info_value . "</li>";
     };
-    $display = $display . "</ul>";
+    $display = $display . "<li>Total Price: $" . item_total($grocery_item_value['price'], $grocery_item_value['quantity']) . "</li></ul>";
   };
+  $display = $display . '<p>Total Cost: $' . $total . '</p>';
   return $display;
 }
