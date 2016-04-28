@@ -1,7 +1,7 @@
 <?php
 
 function cards_menu(){
-  $friends = array("Gunther", "Frank", "Chad");
+  $friends = array("Alex", "Julia", "Emily");
   foreach($friends as $friend){
     $items['cards/' . $friend] = array(
       'title' => $friend,
@@ -16,5 +16,5 @@ function cards_menu(){
 
 function cards_generator($args){
   $friend = $args;
-  return "<p>Hey " . $friend . " miss you</p>";
+  return "<h3>Hey, " . $friend . "! Hope all is well!</h3>";
 }
