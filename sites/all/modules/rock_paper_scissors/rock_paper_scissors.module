@@ -2,7 +2,7 @@
 
 function rock_paper_scissors_menu() {
     $items['rock_paper_scissors'] = array(
-        'title' => 'Rock Paper Scissors - Player 1',
+        'title' => 'Rock Paper Scissors',
         'page callback' => 'drupal_get_form',
         'page arguments' => array('player1_rock_paper_scissors_form'),
         'access callback' => TRUE,
@@ -76,7 +76,7 @@ function player2_rock_paper_scissors_form_submit($form, &$form_state) {
     if($player1_turn === 'rock' && $player2_turn === 'paper'){
         $winner = "Player One Wins <img src='rps.jpg'>";
     } elseif ($player1_turn === 'rock' && $player2_turn === 'scissors'){
-        $winner = 'Player One Wins';
+        $winner = "Player One Wins '<img src='/sites/rps2.jpg'>";
     } elseif ($player1_turn === 'rock' && $player2_turn === 'rock'){
         $winner = 'DRAW';
     } elseif ($player1_turn === 'paper' && $player2_turn === 'rock'){
