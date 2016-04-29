@@ -1,0 +1,5 @@
+name = Shift Cipher
+description = A module to encrypt entries using a type of substitution cipher
+package = Epicodus Examples
+core = 7.x
+files[] = shift_cipher.module
