@@ -22,27 +22,47 @@ function shift_cipher_form(){
         '#title' => 'Shift Value',
         '#description' => 'Enter a shift value',
         '#type' => 'textfield',
+        '#element_validate' => array('element_validate_integer_positive'),
         '#required' => TRUE,
   );
   $form['direction'] = array(
         '#title' => 'Direction',
         '#description' => 'Enter Left or Right',
         '#type' => 'textfield',
+        '#element_validate' => array('element_validate_direction'),
         '#required' => TRUE,
   );
-  $form['phrase'] => array(
+  $form['phrase'] = array(
         '#title' => 'Phrase',
         '#description' => 'Enter the phrase you would like to code',
         '#type' => 'textfield',
+        '#element_validate' => array('element_validate_phrase'),
         '#required' => TRUE,
   );
-  $form['submit'] => array(
-        '#type' => 'Submit',
-        '#value' => 'Submit',
+  $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => 'Submit',
   );
   return $form;
 }
 
+function element_validate_direction($element){
+  $input_direction = strtolower($element['#value']);
+  $values = array('left', 'right');
+
+  if(!in_array($input_direction, $values)){
+    form_error($element, t("Please enter either 'Left' or 'Right'"));
+  }
+}
+
+function element_validate_phrase($element){
+  $input_phrase = $element['#value'];
+  if(preg_match("/[~`!@#$%^&*()_-+=\[\]{}\|\\:;\\<>]/"))
+}
+
+function shift_cipher_form_submit(){
+
+}
 function shift_cipher_success(){
 
 }
