@@ -57,11 +57,14 @@ function element_validate_direction($element){
 
 function element_validate_phrase($element){
   $input_phrase = $element['#value'];
-  if(preg_match("/[~`!@#$%^&*()_-+=\[\]{}\|\\:;\\<>]/"))
+
+  if (!preg_match("/^[a-zA-Z\ .'s]*$/", $input_phrase)) {
+    form_error($element, t('You must enter letters only!'));
+  }
 }
 
 function shift_cipher_form_submit(){
-
+  $form_state['redirect'] = 'shift_cipher_success_page';
 }
 function shift_cipher_success(){
 
