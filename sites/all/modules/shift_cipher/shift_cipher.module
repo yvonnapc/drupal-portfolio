@@ -56,16 +56,40 @@ function element_validate_direction($element){
 }
 
 function element_validate_phrase($element){
-  $input_phrase = $element['#value'];
+  $input_phrase = strtolower($element['#value']);
 
   if (!preg_match("/^[a-zA-Z\ .'s]*$/", $input_phrase)) {
     form_error($element, t('You must enter letters only!'));
   }
 }
 
-function shift_cipher_form_submit(){
+function shift_cipher_form_submit($form, &$form_state){
+  $input_shift_value = $form_state['values']['shift_value'];
+  $input_direction = $form_state['values']['direction'];
+  $input_phrase = str_split($form_state['values']['phrase']);
+  var_dump($input_phrase);
+  $output = '';
+
+  if($input_direction === 'left'){
+    $input_shift_value = $input_shift_value * -1;
+  }
+
+  $alphabet = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',     'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+
+    // foreach($input_phrase as $letter){
+    //   if(in_array($letter, $alphabet)){
+    //
+    //   }
+    //
+    // }
+
+  $test_message = implode('', $input_phrase);
+
+  $_SESSION['translated_phrase'] = $test_message;
   $form_state['redirect'] = 'shift_cipher_success_page';
 }
 function shift_cipher_success(){
-
+  $test_message = $_SESSION['translated_phrase'];
+  var_dump($test_message);
+  return $_SESSION['translated_phrase'];
 }
