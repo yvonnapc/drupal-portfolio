@@ -14,6 +14,9 @@ You will need the following things properly installed on your computer:<br>
 • [Drupal](https://www.drupal.org/project/drupal)<br>
 • [MAMP] (https://www.mamp.info/en/)
 
+##Log-In
+
+
 ## Setup/Installation Requirements
 
 1. Open Terminal and clone into this repository: https://github.com/yvonnapc/drupal-portfolio.git
