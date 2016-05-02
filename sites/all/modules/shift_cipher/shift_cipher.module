@@ -20,7 +20,7 @@ function shift_cipher_menu(){
 function shift_cipher_form(){
   $form['shift_value'] = array(
         '#title' => 'Shift Value',
-        '#description' => 'Enter a shift value',
+        '#description' => 'Enter a numerical shift value',
         '#type' => 'textfield',
         '#element_validate' => array('element_validate_integer_positive'),
         '#required' => TRUE,
@@ -67,29 +67,35 @@ function shift_cipher_form_submit($form, &$form_state){
   $input_shift_value = $form_state['values']['shift_value'];
   $input_direction = $form_state['values']['direction'];
   $input_phrase = str_split($form_state['values']['phrase']);
-  var_dump($input_phrase);
   $output = '';
 
   if($input_direction === 'left'){
-    $input_shift_value = $input_shift_value * -1;
+    $input_shift_value = 26 - $input_shift_value;
   }
 
   $alphabet = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',     'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
 
-    // foreach($input_phrase as $letter){
-    //   if(in_array($letter, $alphabet)){
-    //
-    //   }
-    //
-    // }
+    //loop through each letter in the input phrase
+    foreach($input_phrase as $letter){
+      //assures that the character is in the alphabet array
+      if(in_array($letter, $alphabet)){
+        //letters are indexed
+        $key = array_search($letter, $alphabet);
+        $to_shift = ($key + $input_shift_value) % 26;
+        $output .= $alphabet[$to_shift];
 
-  $test_message = implode('', $input_phrase);
+    } else{
+      $output .= $letter;
+    }
+  }
 
-  $_SESSION['translated_phrase'] = $test_message;
+  $_SESSION['translated_phrase'] = $output;
   $form_state['redirect'] = 'shift_cipher_success_page';
 }
+
 function shift_cipher_success(){
-  $test_message = $_SESSION['translated_phrase'];
-  var_dump($test_message);
+  // var_dump($output);
+  var_dump($_SESSION['translated_phrase']);
   return $_SESSION['translated_phrase'];
+
 }
