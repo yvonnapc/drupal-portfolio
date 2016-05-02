@@ -77,15 +77,13 @@ function shift_cipher_form_submit($form, &$form_state){
   $input_phrase = str_split(strtolower($input_phrase));
   $alphabet = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',     'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
 
-
-    foreach($input_phrase as $letter){ //loop through each letter in phrase
-      if(in_array($letter, $alphabet)){ //assures the letter is in alpha array
-        $key = array_search($letter, $alphabet); //letters are indexed
-        $to_shift = ($key + $input_shift_value) % 26; //modulus operator
-        $output .= $alphabet[$to_shift];
-
+  foreach($input_phrase as $letter){ //loop through each letter in phrase
+    if(in_array($letter, $alphabet)){ //assures the letter is in alpha array
+      $key = array_search($letter, $alphabet); //letters are indexed
+      $to_shift = ($key + $input_shift_value) % 26; //modulus operator
+      $output .= $alphabet[$to_shift];
     } else{
-      $output .= $letter;
+      $output .= $letter; //concat assignment
     }
   }
 
@@ -97,8 +95,8 @@ function shift_cipher_form_submit($form, &$form_state){
 function shift_cipher_success(){
   $original_phrase = $_SESSION['phrase'];
   // var_dump($_SESSION['translated_phrase']);
-  return '<h2>Your original message: </h2>' . $original_phrase .
-         '<h2>Encrypted phrase: </h2>' . $_SESSION['translated_phrase'] . '<br>' .
+  return '<h2>Original message: </h2>' . $original_phrase .
+         '<h2>Encrypted message: </h2>' . $_SESSION['translated_phrase'] . '<br>' .
          '<img src=http://i.makeagif.com/media/1-18-2014/ESeo4v.gif>';
 
 }
