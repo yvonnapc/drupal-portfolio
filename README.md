@@ -15,7 +15,9 @@ You will need the following things properly installed on your computer:<br>
 • [MAMP] (https://www.mamp.info/en/)
 
 ##Log-In
-
+• Database Name: 'project' (file will be 'project.sql.zip')<br>
+• PhpMyAdmin user: '<em>yvonna</em>' password: '<em>epicodus</em>'<br>
+• Site Maintenance Account: '<em>admin</em>' password: '<em>epicodus</em>'<br>
 
 ## Setup/Installation Requirements
 
