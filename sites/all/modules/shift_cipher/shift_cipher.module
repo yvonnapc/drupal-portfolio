@@ -66,22 +66,22 @@ function element_validate_phrase($element){
 function shift_cipher_form_submit($form, &$form_state){
   $input_shift_value = $form_state['values']['shift_value'];
   $input_direction = $form_state['values']['direction'];
-  $input_phrase = str_split($form_state['values']['phrase']);
+  $input_phrase = $form_state['values']['phrase'];
+  $_SESSION['phrase'] = $input_phrase;
   $output = '';
 
   if($input_direction === 'left'){
     $input_shift_value = 26 - $input_shift_value;
   }
 
+  $input_phrase = str_split(strtolower($input_phrase));
   $alphabet = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',     'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
 
-    //loop through each letter in the input phrase
-    foreach($input_phrase as $letter){
-      //assures that the character is in the alphabet array
-      if(in_array($letter, $alphabet)){
-        //letters are indexed
-        $key = array_search($letter, $alphabet);
-        $to_shift = ($key + $input_shift_value) % 26;
+
+    foreach($input_phrase as $letter){ //loop through each letter in phrase
+      if(in_array($letter, $alphabet)){ //assures the letter is in alpha array
+        $key = array_search($letter, $alphabet); //letters are indexed
+        $to_shift = ($key + $input_shift_value) % 26; //modulus operator
         $output .= $alphabet[$to_shift];
 
     } else{
@@ -89,13 +89,16 @@ function shift_cipher_form_submit($form, &$form_state){
     }
   }
 
+  $original_phrase = $_SESSION['phrase'];
   $_SESSION['translated_phrase'] = $output;
   $form_state['redirect'] = 'shift_cipher_success_page';
 }
 
 function shift_cipher_success(){
-  // var_dump($output);
-  var_dump($_SESSION['translated_phrase']);
-  return $_SESSION['translated_phrase'];
+  $original_phrase = $_SESSION['phrase'];
+  // var_dump($_SESSION['translated_phrase']);
+  return '<h2>Your original message: </h2>' . $original_phrase .
+         '<h2>Encrypted phrase: </h2>' . $_SESSION['translated_phrase'] . '<br>' .
+         '<img src=http://i.makeagif.com/media/1-18-2014/ESeo4v.gif>';
 
 }
