@@ -81,9 +81,9 @@ function shift_cipher_form_submit($form, &$form_state){
     if(in_array($letter, $alphabet)){ //assures the letter is in alpha array
       $key = array_search($letter, $alphabet); //letters are indexed
       $to_shift = ($key + $input_shift_value) % 26; //modulus operator
-      $output .= $alphabet[$to_shift];
+      $output .= $alphabet[$to_shift]; //concats, appends letter to output
     } else{
-      $output .= $letter; //concat assignment
+      $output .= $letter; //concat, appends non-letters to output
     }
   }
 
