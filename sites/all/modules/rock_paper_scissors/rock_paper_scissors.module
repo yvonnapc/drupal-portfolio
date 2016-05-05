@@ -76,21 +76,21 @@ function player2_rock_paper_scissors_form_submit($form, &$form_state) {
     if($player1_turn === 'rock' && $player2_turn === 'paper'){
         $winner = "Player One Wins <img src='rps.jpg'>";
     } elseif ($player1_turn === 'rock' && $player2_turn === 'scissors'){
-        $winner = "Player One Wins '<img src='/sites/rps2.jpg'>";
+        $winner = "Player One Wins <img src='/sites/rps2.jpg'>";
     } elseif ($player1_turn === 'rock' && $player2_turn === 'rock'){
-        $winner = 'DRAW';
+        $winner = "DRAW <img src='/sites/rps3.jpg'>";
     } elseif ($player1_turn === 'paper' && $player2_turn === 'rock'){
-        $winner = 'Player Two Wins';
+        $winner = "Player Two Wins <img src='/sites/rps2.jpg'>";
     } elseif ($player1_turn === 'paper' && $player2_turn === 'scissors'){
-        $winner = 'Player Two Wins';
+        $winner = "Player Two Wins <img src='/sites/rockpaperscissors.jpg'>";
     }  elseif ($player1_turn === 'paper' && $player2_turn === 'paper'){
         $winner = "DRAW <img src='/sites/rockpaperscissors.jpg'>";
     } elseif ($player1_turn === 'scissors' && $player2_turn === 'paper'){
-        $winner = 'Player One Wins';
+        $winner = "Player One Wins <img src='/sites/rockpaperscissors.jpg'>";
     } elseif ($player1_turn === 'scissors' && $player2_turn === 'rock'){
-        $winner = 'Player Two Wins';
+        $winner = "Player Two Wins <img src='/sites/rps3.jpg'>";
     } elseif ($player1_turn === 'scissors' && $player2_turn === 'scissors'){
-        $winner = 'DRAW';
+        $winner = "DRAW <img src='/sites/rockpaperscissors.jpg'>";
     }
 
     $_SESSION['game_outcome'] = $winner;
