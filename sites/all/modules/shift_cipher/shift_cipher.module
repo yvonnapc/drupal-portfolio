@@ -22,7 +22,7 @@ function shift_cipher_form(){
         '#title' => 'Shift Value',
         '#description' => 'Enter a numerical shift value',
         '#type' => 'textfield',
-        '#element_validate' => array('element_validate_integer_positive'),
+        '#element_validate' => array('element_validate_range'),
         '#required' => TRUE,
   );
   $form['direction'] = array(
@@ -44,6 +44,12 @@ function shift_cipher_form(){
       '#value' => 'Submit',
   );
   return $form;
+}
+
+function element_validate_range($element){
+  if($element['#value'] > 26 || $element['#value'] < 1){
+    form_error($element, t("Please enter a number between 1-26"));
+  }
 }
 
 function element_validate_direction($element){
