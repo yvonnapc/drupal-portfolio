@@ -1,0 +1,5 @@
+name = Ajax View Module
+description = A module utilizing Ajax
+package = Custom Modules
+core = 7.x
+files[] = ajax_view.module

@@ -1,0 +1,30 @@
+<?php
+
+function ajax_view_menu(){
+  $items['path-to-ajax/%/%'] = array(
+          'access arguments' => array('access content'),
+          'page callback' => 'ajax_view_ajax_callback',
+          'page arguments' => array(1,2),
+          'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+//first argument comes from URL "path-to-ajax/nojs/[nid]". We assign those arguments to variables $js and $node_id
+function ajax_view_ajax_callback($js, $node_id){
+  $node = node_load($node_id);
+
+  if($js == 'nojs'){//If no JavaScript, direct to the node
+    drupal_goto('node/' . $node->nid);
+  }
+
+  $build = node_view($node);//Get the render array for the node
+  $html = render($build);//Render the array it into HTML
+
+  //Prepare the ajax command to insert the node's HTML into our <div> in the view wrapper
+  $commands = array();
+  $commands[] = ajax_command_html('#ajax-view-view-wrapper', $html);
+
+  print ajax_render($commands);//Render commands into JSON format, execute them by        printing to the browser
+  exit;
+}
