@@ -1,0 +1,5 @@
+name = Ajax Link Module
+description = A module that makes an Ajax call through a link
+core = 7.x
+package = Custom Modules
+scripts[] = ajax_link.js
