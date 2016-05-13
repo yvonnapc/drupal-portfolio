@@ -45,31 +45,30 @@ function element_validate_helix($element){
 
 function dna_helix_form_submit($form, &$form_state){
   $input = $form_state['values']['input'];
-  $split_input = str_split($input);
+  $split_input = str_split(strtoupper($input));
   $_SESSION['input'] = $input;
-//   $output = '';
-//
-//   foreach($split_input as $helix){
-//     if($helix === 'T'){
-//       $output .('A');
-//     } elseif ($helix === 'A'){
-//       $output .('T');
-//     }elseif($helix === 'C'){
-//       $output .('G');
-//     }elseif($helix === 'G'){
-//       $output .('C');
-//     }
-//   }
-//
+  $output = '';
+
+  foreach($split_input as $letter){
+    if($letter === 'T'){
+      $output .'A';
+    } elseif ($letter === 'A'){
+      $output .'T';
+    }elseif($letter === 'C'){
+      $output .'G';
+    }elseif($letter === 'G'){
+      $output .'C';
+    }
+  }
+
   $original_phrase = $_SESSION['input'];
-  // $_SESSION['new_dna'] = $output;
+  $_SESSION['new_dna'] = $output;
   $form_state['redirect'] = 'dna_helix_success';
 }
 
 function dna_helix_results(){
   $original_phrase = $_SESSION['input'];
-  // $results = $_SESSION['new_dna'];
 
   return '<h1>Your first set of helix:</h1>' . $original_phrase .
-         '<h1>Your second set of helix:</h1>' ;
+         '<h1>Your second set of helix:</h1>' . $_SESSION['new_dna'];
 }

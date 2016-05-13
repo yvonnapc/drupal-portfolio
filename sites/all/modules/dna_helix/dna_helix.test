@@ -1,0 +1,17 @@
+<!-- 
+// class DNAHelixTestCase extends DrupalUnitTestCase
+// {
+//     public static function getInfo()
+//     {
+//         return array(
+//             'name' => 'DNA Helix Unit Tests',
+//             'description' => 'Test that DNA Helix module works properly',
+//             'group' => 'Code Review',
+//         );
+//     }
+//
+//     function testDnaHelix()
+//     {
+//         $description = 'An blank input should return '
+//     }
+// } -->
