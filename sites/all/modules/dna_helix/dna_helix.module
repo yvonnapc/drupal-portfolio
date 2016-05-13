@@ -1,0 +1,12 @@
+<?php
+
+function dna_helix_menu(){
+  $items['double_helix'] = array(
+    'title' => 'DNA Helix',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => 'double_helix_form',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}

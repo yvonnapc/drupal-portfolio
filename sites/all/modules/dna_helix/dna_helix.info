@@ -1,0 +1,5 @@
+name = DNA Helix
+description = A module to generate the other half of a DNA helix
+core = 7.x
+package = Custom Modules
+files[] = dna_helix.module
