@@ -17,22 +17,54 @@ function dna_helix_menu(){
   return $items;
 }
 
-function double_helix_form(){
+function dna_helix_form(){
   $form['first_helix'] = array(
       '#title' => 'Helix',
       '#description' => t('Enter the first sequence of elements in your DNA'),
       '#type' => 'textfield',
-      '#element_validate' => array('element_validate_input'),
+      '#element_validate' => array('element_validate_helix'),
       '#required' => TRUE,
+  );
+  $form['submit'] = array(
+      '#title' => 'submit',
+      '#value' => 'Submit',
   );
   return $form;
 }
 
-function element_validate_input($element){
+function element_validate_helix($element){
   $user_input = strtoupper($element['#value']);
   $nucleotides = array('A', 'T', 'C', 'G');
 
-  if(!in_array($user_input, $nucleotides){
+  if(!in_array($user_input, $nucleotides)){
     form_error($element, t('Please enter only A, T, C, G'));
-  });
+  }
+}
+
+function dna_helix_form_submit($form, &$form_state){
+  $input_dna = $form_state['values']['firts_helix'];
+  $input_dna = str_split($input_dna);
+  $output = '';
+
+  foreach($input_dna as $helix){
+
+    if($helix === 'T'){
+      $output .('A');
+    } elseif ($helix === 'A'){
+      array_push('T');
+    }elseif($helix === 'C'){
+      array_push('G');
+    }elseif($helix === 'G'){
+      array_push('C');
+    }else {
+
+    }
+  }
+
+  $_SESSION['new_dna'] = $output;
+  $form_state['redirect'] = 'double_helix_success';
+}
+
+function dna_helix_results(){
+  return ''
 }
