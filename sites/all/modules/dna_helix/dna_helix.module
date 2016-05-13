@@ -8,5 +8,31 @@ function dna_helix_menu(){
     'access callback' => TRUE,
     'type' => MENU_NORMAL_ITEM,
   );
+  $items['double_helix_success'] = array(
+    'title' => 'Doube Helix Success',
+    'page callback' => 'double_helix_results',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
+}
+
+function double_helix_form(){
+  $form['first_helix'] = array(
+      '#title' => 'Helix',
+      '#description' => t('Enter the first sequence of elements in your DNA'),
+      '#type' => 'textfield',
+      '#element_validate' => array('element_validate_input'),
+      '#required' => TRUE,
+  );
+  return $form;
+}
+
+function element_validate_input($element){
+  $user_input = strtoupper($element['#value']);
+  $nucleotides = array('A', 'T', 'C', 'G');
+
+  if(!in_array($user_input, $nucleotides){
+    form_error($element, t('Please enter only A, T, C, G'));
+  });
 }
