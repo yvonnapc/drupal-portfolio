@@ -1,5 +1,5 @@
 name = Project Ajax
 description = A view showing content type Projects for code review
-core = 7.x
 package = Custom Modules
-files[] = project-ajax.module
+core = 7.x
+files[] = project_ajax.module
