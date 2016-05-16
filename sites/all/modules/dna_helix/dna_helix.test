@@ -2,27 +2,50 @@
 
  class DnaHelixTestCase extends DrupalUnitTestCase
  {
-     public static function getInfo()
-     {
-         return array(
-             'name' => 'DNA Helix Unit Tests',
-             'description' => 'Test that DNA Helix module works properly',
-             'group' => 'Code Review',
-         );
+        public static function getInfo()
+        {
+            return array(
+                 'name' => 'DNA Helix Unit Tests',
+                 'description' => 'Test that DNA Helix module works properly',
+                 'group' => 'Code Review',
+            );
+        }
+
+        function testMakeDna()
+        {
+            $description = 'An input will be made all-caps as well as str_split';
+
+            //Arrange
+            $input = 'atcg';
+            //Act
+            $result = make_dna($input);
+            $expected_result = array('A', 'C', 'T', 'G');
+            //Assert
+            $this->assertTrue($result, $description);
+
+            $description = 'The input of T will return A';
+            $input = 'T';
+            $result = make_dna($input);
+            $expected_result = 'A';
+            $this->assertTrue($result, $description);
+        }
+}
+
+class DnaHelixTests extends DrupalWebTestCase {
+      public static function getInfo(){
+          return array(
+              'name' => 'Dna Helix Tests',
+              'description' => 'Functional tests for the Dna_Helix module',
+              'group' => 'Code Review',
+          );
       }
 
-     function testMakeDna()
-     {
-         $description = 'An input will be made all-caps as well as str_split';
+      public function setUp(){
+          parent::setUp(array('dna_helix'));
+      }
 
-         //Arrange
-         $input = 'atcg';
-         //Act
-         $result = make_dna($input);
-         $expected_result = array('A', 'C', 'T', 'G');
-         //Assert
-         $this->assertTrue($result, $description);
-
-
-     }
- }
+      public function testDnaNavigation(){
+          $this->drupalGet('dna_helix');
+          $this->assertText('Enter the first sequence of elements in your DNA', 'Module form successful');
+      }
+}

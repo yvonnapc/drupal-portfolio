@@ -67,7 +67,7 @@ function make_dna($input){
 function dna_helix_form_submit($form, &$form_state){
   $input = $form_state['values']['input'];
   $output = make_dna($input);
-  $_SESSION['user_input'] = $input;
+  $_SESSION['user_input'] = strtoupper($input);
   $_SESSION['completed_dna'] = $output;
   $form_state['redirect'] = 'dna_helix_success_page';
 }
@@ -78,6 +78,5 @@ function dna_helix_results(){
   return '<h3>Your first set of helix:</h3>' . $original_phrase .
          '<h3>Your second set of helix:</h3>' . $full_dna .
          '<h3>Full DNA:</h3>' . $original_phrase . $full_dna .
-         '<h5>Humans: for further testing consult your physician.<br> Non-humans: contact Agents Mulder & Scully<br></h5>' .
          '<img src=http://45.media.tumblr.com/60545689ca8603898cf7517db24e4531/tumblr_ntd4pxhMUk1rnfdtuo1_500.gif>';
 }
