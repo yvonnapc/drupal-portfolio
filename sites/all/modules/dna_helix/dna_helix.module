@@ -8,7 +8,7 @@ function dna_helix_menu(){
     'access callback' => TRUE,
     'type' => MENU_NORMAL_ITEM,
   );
-  $items['dna_helix_success'] = array(
+  $items['dna_helix_success_page'] = array(
     'title' => 'DNA Helix Success',
     'page callback' => 'dna_helix_results',
     'access callback' => TRUE,
@@ -43,32 +43,38 @@ function element_validate_helix($element){
   }
 }
 
-function dna_helix_form_submit($form, &$form_state){
-  $input = $form_state['values']['input'];
+function make_dna($input){
+  // $input = $form_state['values']['input'];
   $split_input = str_split(strtoupper($input));
   $_SESSION['input'] = $input;
   $output = '';
 
   foreach($split_input as $letter){
     if($letter === 'T'){
-      $output .'A';
+      $output .= 'A';
     } elseif ($letter === 'A'){
-      $output .'T';
+      $output .= 'T';
     }elseif($letter === 'C'){
-      $output .'G';
+      $output .= 'G';
     }elseif($letter === 'G'){
-      $output .'C';
+      $output .= 'C';
     }
   }
+  return $output;
 
-  $original_phrase = $_SESSION['input'];
-  $_SESSION['new_dna'] = $output;
-  $form_state['redirect'] = 'dna_helix_success';
+}
+
+function dna_helix_form_submit($form, &$form_state){
+  $input = $form_state['values']['input'];
+  $output = make_dna($input);
+  $_SESSION['user_input'] = $input;
+  $_SESSION['completed_dna'] = $output;
+  $form_state['redirect'] = 'dna_helix_success_page';
 }
 
 function dna_helix_results(){
-  $original_phrase = $_SESSION['input'];
-
+  $original_phrase = $_SESSION['user_input'];
+  $full_dna = $_SESSION['completed_dna'];
   return '<h1>Your first set of helix:</h1>' . $original_phrase .
-         '<h1>Your second set of helix:</h1>' . $_SESSION['new_dna'];
+         '<h1>Your second set of helix:</h1>' . $full_dna;
 }
