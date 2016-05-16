@@ -1,17 +1,28 @@
-<!-- 
-// class DNAHelixTestCase extends DrupalUnitTestCase
-// {
-//     public static function getInfo()
-//     {
-//         return array(
-//             'name' => 'DNA Helix Unit Tests',
-//             'description' => 'Test that DNA Helix module works properly',
-//             'group' => 'Code Review',
-//         );
-//     }
-//
-//     function testDnaHelix()
-//     {
-//         $description = 'An blank input should return '
-//     }
-// } -->
+<?php
+
+ class DnaHelixTestCase extends DrupalUnitTestCase
+ {
+     public static function getInfo()
+     {
+         return array(
+             'name' => 'DNA Helix Unit Tests',
+             'description' => 'Test that DNA Helix module works properly',
+             'group' => 'Code Review',
+         );
+      }
+
+     function testMakeDna()
+     {
+         $description = 'An input will be made all-caps as well as str_split';
+
+         //Arrange
+         $input = 'atcg';
+         //Act
+         $result = make_dna($input);
+         $expected_result = array('A', 'C', 'T', 'G');
+         //Assert
+         $this->assertTrue($result, $description);
+
+
+     }
+ }
