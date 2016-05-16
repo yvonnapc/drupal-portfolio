@@ -38,7 +38,7 @@ function element_validate_helix($element){
 
   foreach($user_input as $letter){
     if(!in_array($letter, $nucleotides)){
-      form_error($element, t('Please enter only A, T, C, G'));
+      form_error($element, t('The agents are getting suspicious, please enter only A, T, C, G' . '<img src=http://www.panicmanual.com/wp-content/uploads/2010/08/xfiles.jpg>'));
     }
   }
 }
@@ -75,6 +75,9 @@ function dna_helix_form_submit($form, &$form_state){
 function dna_helix_results(){
   $original_phrase = $_SESSION['user_input'];
   $full_dna = $_SESSION['completed_dna'];
-  return '<h1>Your first set of helix:</h1>' . $original_phrase .
-         '<h1>Your second set of helix:</h1>' . $full_dna;
+  return '<h3>Your first set of helix:</h3>' . $original_phrase .
+         '<h3>Your second set of helix:</h3>' . $full_dna .
+         '<h3>Full DNA:</h3>' . $original_phrase . $full_dna .
+         '<h5>Humans: for further testing consult your physician.<br> Non-humans: contact Agents Mulder & Scully<br></h5>' .
+         '<img src=http://45.media.tumblr.com/60545689ca8603898cf7517db24e4531/tumblr_ntd4pxhMUk1rnfdtuo1_500.gif>';
 }
